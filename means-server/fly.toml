@@ -1,0 +1,30 @@
+# fly.toml file generated for winter-fire-9620 on 2022-09-11T22:52:30+01:00
+
+app = "winter-fire-9620"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  internal_port = 1234
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    port = 1234
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "30s"
+    restart_limit = 0
+    timeout = "2s"
